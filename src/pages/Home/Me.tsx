@@ -51,9 +51,9 @@ const Me = () => {
       id="projects"
       className="container mx-auto py-20"
     >
-      <div className=" px-4">
+      <div>
         <h2 className="text-5xl font-bold mb-4 text-center">Me</h2>
-        <p className="text-center mb-12">A collection of who am I</p>
+        <p className="text-center mb-12">A collection of who I am</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (

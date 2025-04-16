@@ -25,15 +25,15 @@ const Contact = () => {
             <span className="sr-only">GitHub</span>
           </a>
           <a
-            target="_blank"
-            href="https://www.linkedin.com/in/matin-mammadli-b05167225/"
+            href="mailto:matinmammadli0420@gmail.com"
             className="p-3"
           >
             <Mail className="h-6 w-6" />
             <span className="sr-only">Email</span>
           </a>
           <a
-            href="mailto:matinmammadli0420@gmail.com"
+            target="_blank"
+            href="https://www.linkedin.com/in/matin-mammadli-b05167225/"
             className="p-3"
           >
             <Linkedin className="h-6 w-6" />

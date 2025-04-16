@@ -9,7 +9,7 @@ const Header = () => {
       <Card className="backdrop-blur-xs bg-background/30 p-2 shadow-xl">
         <CardContent className="px-2">
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4 font-bold bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
+            <div className="flex items-center gap-4 font-bold">
               <img
                 src={logo}
                 alt="Sogan"
