@@ -12,13 +12,13 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="container mx-auto py-20"
+      className="container mx-auto py-20 h-[70vh] md:h-auto flex justify-center items-center"
     >
       <div className="flex justify-between items-center flex-col md:flex-row gap-8">
         <div className="md:w-[40%]">
-          <div className="flex mb-6 gap-2">
-            <h1 className="text-4xl md:text-6xl font-bold text-nowrap">Hello, I'm</h1>
-            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-indigo-900 bg-clip-text text-transparent">
+          <div className="flex mb-6 gap-2 flex-wrap">
+            <h1 className="text-6xl font-bold text-nowrap">Hello, I'm</h1>
+            <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-400 to-indigo-900 bg-clip-text text-transparent">
               Matin
             </h1>
           </div>

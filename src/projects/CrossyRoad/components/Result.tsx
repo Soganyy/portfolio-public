@@ -1,5 +1,7 @@
 import useStore from "../stores/game";
 import "../assets/result.css";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
 export function Result() {
   const status = useStore((state) => state.status);
@@ -10,11 +12,15 @@ export function Result() {
 
   return (
     <div id="result-container">
-      <div id="result">
-        <h1>Game Over</h1>
-        <p>Your score: {score}</p>
-        <button onClick={reset}>Retry</button>
-      </div>
+      <Card id="result">
+        <CardContent className="text-black">
+          <CardTitle className="text-black">
+            <h1>Game Over</h1>
+          </CardTitle>
+          <p>Your score: {score}</p>
+        </CardContent>
+        <Button onClick={reset}>Retry</Button>
+      </Card>
     </div>
   );
 }

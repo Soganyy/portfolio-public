@@ -5,11 +5,11 @@ import logo from "@/assets/logo.svg";
 
 const Header = () => {
   return (
-    <header className="sticky top-7 container mx-auto px-4 w-[100%] z-50">
-      <Card className="backdrop-blur-xs bg-background/30 p-2 shadow-xl">
+    <header className="sticky top-7 container mx-auto xl:px-40 w-[100%] z-50">
+      <Card className="backdrop-blur-sm bg-background/50 p-2 shadow-none">
         <CardContent className="px-2">
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4 font-bold bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
+            <div className="flex items-center gap-4 font-bold">
               <img
                 src={logo}
                 alt="Sogan"

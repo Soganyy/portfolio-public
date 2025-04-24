@@ -1,6 +1,8 @@
 import useEventListeners from "../hooks/useEventListener";
 import { queueMove } from "../stores/player";
 import "../assets/controls.css";
+import { Button } from "@/components/ui/button";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp } from "lucide-react";
 
 export function Controls() {
   useEventListeners();
@@ -8,10 +10,18 @@ export function Controls() {
   return (
     <div id="controls">
       <div>
-        <button onClick={() => queueMove("forward")}>▲</button>
-        <button onClick={() => queueMove("left")}>◀</button>
-        <button onClick={() => queueMove("backward")}>▼</button>
-        <button onClick={() => queueMove("right")}>▶</button>
+        <Button onClick={() => queueMove("forward")}>
+          <ArrowUp className="text-black" />
+        </Button>
+        <Button onClick={() => queueMove("left")}>
+          <ArrowLeft className="text-black" />
+        </Button>
+        <Button onClick={() => queueMove("backward")}>
+          <ArrowDown className="text-black" />
+        </Button>
+        <Button onClick={() => queueMove("right")}>
+          <ArrowRight className="text-black" />
+        </Button>
       </div>
     </div>
   );
