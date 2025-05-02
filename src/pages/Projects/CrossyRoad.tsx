@@ -3,7 +3,7 @@ import CrossyRoadGame from "@/projects/CrossyRoad";
 
 const CrossyRoad = () => {
   return (
-    <section className="container mx-auto py-20">
+    <section className="container mx-auto py-10">
       <Card className="w-full mx-auto">
         <CardHeader>
           <CardTitle>Crossy Road</CardTitle>
