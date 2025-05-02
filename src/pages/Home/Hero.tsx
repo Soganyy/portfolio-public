@@ -1,18 +1,10 @@
-import { Button } from "@/components/ui/button";
 import Spline from "@splinetool/react-spline";
 
 const Hero = () => {
-  const onConnect = () => {
-    const contact = document.getElementById("contact");
-    if (contact) {
-      contact.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section
       id="hero"
-      className="container mx-auto py-20 h-[70vh] md:h-auto flex justify-center items-center"
+      className="container mx-auto relative py-20 h-[100vh] flex justify-center items-center"
     >
       <div className="flex justify-between items-center flex-col md:flex-row gap-8">
         <div className="md:w-[40%]">
@@ -26,13 +18,13 @@ const Hero = () => {
             I’m a software engineer who is passionate about learning and creating. I’m always
             curious about the “why” behind the way things work, and technology is where I channel
             much of my energy and creativity.
-            <br />
-            <br />
-            Feel free to reach out.
+            {/* <br /> */}
+            {/* <br /> */}
+            {/* Feel free to reach out. */}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          {/* <div className="flex flex-col sm:flex-row gap-4">
             <Button onClick={onConnect}>Contact Me</Button>
-          </div>
+          </div> */}
         </div>
 
         <div className="hidden md:flex flex-col gap-2 items-center md:items-start w-full md:w-[60%] h-[500px] md:h-[400px]">

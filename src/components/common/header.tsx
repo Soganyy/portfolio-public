@@ -1,33 +1,164 @@
 import { Link } from "react-router-dom";
-import { Card, CardContent } from "../ui/card";
+import { HomeIcon, FolderIcon, Github, Mail, Linkedin, Instagram, Antenna } from "lucide-react";
 import ModeToggle from "./mode-toggle";
 import logo from "@/assets/logo.svg";
+import { Dock, DockIcon } from "../magicui/dock";
+import { Separator } from "../ui/separator";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { Button } from "../ui/button";
 
 const Header = () => {
   return (
-    <header className="sticky top-7 container mx-auto xl:px-40 w-[100%] z-50">
-      <Card className="backdrop-blur-sm bg-background/50 p-2 shadow-none">
-        <CardContent className="px-2">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4 font-bold">
-              <img
-                src={logo}
-                alt="Sogan"
-                height={20}
-                width={20}
-                className="me-4"
-              />
-              <Link to="/">Home</Link>
-              <Link to="/projects">Projects</Link>
-            </div>
+    <Dock className="bg-background/50 border-border">
+      <DockIcon>
+        <img
+          src={logo}
+          alt="Sogan"
+          className="w-5 h-5"
+        />
+      </DockIcon>
 
-            <div className="flex items-center">
-              <ModeToggle />
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </header>
+      <Separator
+        orientation="vertical"
+        className="h-full"
+      />
+
+      <Link to="/">
+        <DockIcon>
+          <HomeIcon size={18} />
+        </DockIcon>
+      </Link>
+
+      <Link to="/projects">
+        <DockIcon>
+          <FolderIcon size={18} />
+        </DockIcon>
+      </Link>
+
+      <Separator
+        orientation="vertical"
+        className="h-full"
+      />
+
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          asChild
+          className="flex md:hidden"
+        >
+          <Button variant="ghost">
+            <Antenna />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="min-w-0 w-auto p-1">
+          <DropdownMenuGroup className="flex flex-col items-center">
+            <DropdownMenuItem className="p-1 w-auto focus:bg-transparent">
+              <a
+                target="_blank"
+                href="https://www.instagram.com/soganyy/"
+                rel="noopener noreferrer"
+              >
+                <DockIcon>
+                  <Instagram size={18} />
+                  <span className="sr-only">Instagram</span>
+                </DockIcon>
+              </a>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem className="p-1 w-auto focus:bg-transparent">
+              <a
+                target="_blank"
+                href="https://github.com/Soganyy"
+                rel="noopener noreferrer"
+              >
+                <DockIcon>
+                  <Github size={18} />
+                  <span className="sr-only">GitHub</span>
+                </DockIcon>
+              </a>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem className="p-1 w-auto focus:bg-transparent">
+              <a href="mailto:matinmammadli0420@gmail.com">
+                <DockIcon>
+                  <Mail size={18} />
+                  <span className="sr-only">Email</span>
+                </DockIcon>
+              </a>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem className="p-1 w-auto focus:bg-transparent">
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/matin-mammadli-b05167225/"
+                rel="noopener noreferrer"
+              >
+                <DockIcon>
+                  <Linkedin size={18} />
+                  <span className="sr-only">LinkedIn</span>
+                </DockIcon>
+              </a>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <div className="hidden md:flex">
+        <a
+          target="_blank"
+          href="https://www.instagram.com/soganyy/"
+          rel="noopener noreferrer"
+        >
+          <DockIcon>
+            <Instagram size={18} />
+            <span className="sr-only">Instagram</span>
+          </DockIcon>
+        </a>
+
+        <a
+          target="_blank"
+          href="https://github.com/Soganyy"
+          rel="noopener noreferrer"
+        >
+          <DockIcon>
+            <Github size={18} />
+            <span className="sr-only">GitHub</span>
+          </DockIcon>
+        </a>
+
+        <a href="mailto:matinmammadli0420@gmail.com">
+          <DockIcon>
+            <Mail size={18} />
+            <span className="sr-only">Email</span>
+          </DockIcon>
+        </a>
+
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/matin-mammadli-b05167225/"
+          rel="noopener noreferrer"
+        >
+          <DockIcon>
+            <Linkedin size={18} />
+            <span className="sr-only">LinkedIn</span>
+          </DockIcon>
+        </a>
+      </div>
+
+      <Separator
+        orientation="vertical"
+        className="h-full"
+      />
+
+      <DockIcon>
+        <ModeToggle />
+      </DockIcon>
+    </Dock>
   );
 };
 
