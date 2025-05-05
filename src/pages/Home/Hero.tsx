@@ -1,3 +1,4 @@
+import { AuroraText } from "@/components/magicui/aurora-text";
 import Spline from "@splinetool/react-spline";
 
 const Hero = () => {
@@ -10,8 +11,8 @@ const Hero = () => {
         <div className="md:w-[40%]">
           <div className="flex mb-6 gap-2 flex-wrap">
             <h1 className="text-6xl font-bold text-nowrap">Hello, I'm</h1>
-            <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-400 to-indigo-900 bg-clip-text text-transparent">
-              Matin
+            <h1 className="text-6xl font-bold">
+              <AuroraText>Matin</AuroraText>
             </h1>
           </div>
           <p className="text-sm md:text-md text-muted-foreground mb-8">

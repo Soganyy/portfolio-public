@@ -1,7 +1,6 @@
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/stores/theme-provider";
-import { CoolMode } from "../magicui/cool-mode";
 
 export default function ModeToggle() {
   const { theme, setTheme } = useTheme();
@@ -11,19 +10,17 @@ export default function ModeToggle() {
   };
 
   return (
-    <CoolMode>
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={toggleTheme}
-      >
-        {theme === "dark" ? (
-          <Sun className="h-[1.2rem] w-[1.2rem] transition-all" />
-        ) : (
-          <Moon className="h-[1.2rem] w-[1.2rem] transition-all" />
-        )}
-        <span className="sr-only">Toggle theme</span>
-      </Button>
-    </CoolMode>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={toggleTheme}
+    >
+      {theme === "dark" ? (
+        <Sun className="h-[1.2rem] w-[1.2rem] transition-all" />
+      ) : (
+        <Moon className="h-[1.2rem] w-[1.2rem] transition-all" />
+      )}
+      <span className="sr-only">Toggle theme</span>
+    </Button>
   );
 }

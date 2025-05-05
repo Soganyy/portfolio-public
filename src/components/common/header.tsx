@@ -12,11 +12,12 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
+import { CoolMode } from "../magicui/cool-mode";
 
 const Header = () => {
   return (
     <Dock className="bg-background/50 border-border">
-      <DockIcon>
+      <DockIcon className="relative">
         <img
           src={logo}
           alt="Sogan"
@@ -47,10 +48,7 @@ const Header = () => {
       />
 
       <DropdownMenu>
-        <DropdownMenuTrigger
-          asChild
-          className="flex md:hidden"
-        >
+        <DropdownMenuTrigger asChild>
           <Button variant="ghost">
             <Antenna />
           </Button>
@@ -108,55 +106,15 @@ const Header = () => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <div className="hidden md:flex">
-        <a
-          target="_blank"
-          href="https://www.instagram.com/soganyy/"
-          rel="noopener noreferrer"
-        >
-          <DockIcon>
-            <Instagram size={18} />
-            <span className="sr-only">Instagram</span>
-          </DockIcon>
-        </a>
-
-        <a
-          target="_blank"
-          href="https://github.com/Soganyy"
-          rel="noopener noreferrer"
-        >
-          <DockIcon>
-            <Github size={18} />
-            <span className="sr-only">GitHub</span>
-          </DockIcon>
-        </a>
-
-        <a href="mailto:matinmammadli0420@gmail.com">
-          <DockIcon>
-            <Mail size={18} />
-            <span className="sr-only">Email</span>
-          </DockIcon>
-        </a>
-
-        <a
-          target="_blank"
-          href="https://www.linkedin.com/in/matin-mammadli-b05167225/"
-          rel="noopener noreferrer"
-        >
-          <DockIcon>
-            <Linkedin size={18} />
-            <span className="sr-only">LinkedIn</span>
-          </DockIcon>
-        </a>
-      </div>
-
       <Separator
         orientation="vertical"
         className="h-full"
       />
 
       <DockIcon>
-        <ModeToggle />
+        <CoolMode>
+          <ModeToggle />
+        </CoolMode>
       </DockIcon>
     </Dock>
   );

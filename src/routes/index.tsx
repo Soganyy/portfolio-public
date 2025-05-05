@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import BaseLayout from "@/layout/base-layout";
 import Loader from "@/components/common/loader";
 import Projects from "@/pages/Projects";
+import NotFound from "@/pages/NotFound";
 
 const Home = lazy(() => import("../pages/Home"));
 
@@ -32,6 +33,10 @@ const AppRoutes: React.FC = () => {
             <Route
               path="/projects"
               element={<Projects />}
+            />
+            <Route
+              path="*"
+              element={<NotFound />}
             />
           </Routes>
         </BaseLayout>
