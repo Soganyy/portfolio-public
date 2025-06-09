@@ -1,11 +1,12 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import BaseLayout from "@/layout/base-layout";
-import Loader from "@/components/common/loader";
-import Projects from "@/pages/Projects";
-import NotFound from "@/pages/NotFound";
+import BaseLayout from "@/layout/BaseLayout";
+import Loader from "@/components/common/Loader";
 
 const Home = lazy(() => import("../pages/Home"));
+const Projects = lazy(() => import("../pages/Projects"));
+const Blog = lazy(() => import("../pages/Blog"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 
 const AppRoutes: React.FC = () => {
   return (
@@ -33,6 +34,10 @@ const AppRoutes: React.FC = () => {
             <Route
               path="/projects"
               element={<Projects />}
+            />
+            <Route
+              path="/blog/*"
+              element={<Blog />}
             />
             <Route
               path="*"

@@ -49,7 +49,7 @@ const Me = () => {
   return (
     <section
       id="projects"
-      className="py-20 sm-h-[100vh]"
+      className="sm:h-screen py-20 flex flex-col items-center justify-center"
     >
       <h2 className="text-5xl font-bold mb-4 text-center">Me</h2>
       <p className="text-center mb-12">A collection of who I am</p>

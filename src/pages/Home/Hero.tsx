@@ -16,16 +16,10 @@ const Hero = () => {
             </h1>
           </div>
           <p className="text-sm md:text-md text-muted-foreground mb-8">
-            I’m a software engineer who is passionate about learning and creating. I’m always
-            curious about the “why” behind the way things work, and technology is where I channel
-            much of my energy and creativity.
-            {/* <br /> */}
-            {/* <br /> */}
-            {/* Feel free to reach out. */}
+            I’m a person who is passionate about learning and creating. Always curious about the
+            “why” behind the way things work, and technology is where I channel much of my energy
+            and creativity.
           </p>
-          {/* <div className="flex flex-col sm:flex-row gap-4">
-            <Button onClick={onConnect}>Contact Me</Button>
-          </div> */}
         </div>
 
         <div className="hidden md:flex flex-col gap-2 items-center md:items-start w-full md:w-[60%] h-[500px] md:h-[400px]">

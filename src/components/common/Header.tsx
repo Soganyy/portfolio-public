@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
-import { HomeIcon, FolderIcon, Github, Mail, Linkedin, Instagram, Antenna } from "lucide-react";
-import ModeToggle from "./mode-toggle";
+import {
+  HomeIcon,
+  FolderIcon,
+  Github,
+  Mail,
+  Linkedin,
+  Instagram,
+  Antenna,
+  NotebookIcon,
+} from "lucide-react";
+import ModeToggle from "./ModeToggle";
 import logo from "@/assets/logo.svg";
 import { Dock, DockIcon } from "../magicui/dock";
 import { Separator } from "../ui/separator";
@@ -39,6 +48,12 @@ const Header = () => {
       <Link to="/projects">
         <DockIcon>
           <FolderIcon size={18} />
+        </DockIcon>
+      </Link>
+
+      <Link to="/blog">
+        <DockIcon>
+          <NotebookIcon size={18} />
         </DockIcon>
       </Link>
 
