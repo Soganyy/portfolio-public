@@ -1,6 +1,6 @@
-import { BlogPost } from "@/types/blog-post";
+import { IBlogPost } from "@/types/blog-post";
 
-export const blogPosts: BlogPost[] = [
+export const blogPosts: IBlogPost[] = [
   {
     id: 1,
     title: "The JavaScript Core",

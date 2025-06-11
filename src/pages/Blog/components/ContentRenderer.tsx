@@ -1,6 +1,7 @@
 import { useState, useEffect, JSX } from "react";
 import { IBlogPost } from "@/types/blog-post";
 import { highlightCode } from "../lib/highlighter";
+import Loader from "@/components/common/Loader";
 
 const ContentRenderer = ({ post }: { post: IBlogPost }) => {
   const [renderedContent, setRenderedContent] = useState<JSX.Element[]>([]);
@@ -57,9 +58,9 @@ const ContentRenderer = ({ post }: { post: IBlogPost }) => {
 
   if (isLoading) {
     return (
-      <section className="prose dark:prose-invert max-w-none mt-8">
-        <div>Loading...</div>
-      </section>
+      <div className="flex items-center justify-center h-64 border border-gray-200 dark:border-gray-700 rounded-lg">
+        <Loader />
+      </div>
     );
   }
 
