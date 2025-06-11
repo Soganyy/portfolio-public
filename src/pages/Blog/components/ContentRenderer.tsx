@@ -1,41 +1,43 @@
+import { BlogPost } from "@/types/blog-post";
 import CodeBlock from "./CodeBlock";
 
-const ContentRenderer: React.FC<{ content: string }> = ({ content }) => {
-  // Split content by code blocks (assuming ```language format)
-  const parts = content.split(/```(\w+)?\n([\s\S]*?)```/g);
-
+const ContentRenderer = ({ post }: { post: BlogPost }) => {
   return (
-    <div className="prose prose-gray dark:prose-invert max-w-none space-y-4">
-      {parts.map((part, index) => {
-        // Every third element starting from index 2 is code content
-        if ((index - 2) % 3 === 0 && index > 0) {
-          const language = parts[index - 1] || "javascript";
-          return (
-            <CodeBlock
-              key={index}
-              code={part.trim()}
-              language={language}
-            />
-          );
+    <section className="prose dark:prose-invert max-w-none mt-8">
+      {post.content.map((block, i) => {
+        switch (block.type) {
+          case "heading":
+            return (
+              <h2
+                key={i}
+                className="text-2xl font-semibold my-6"
+              >
+                {block.content}
+              </h2>
+            );
+          case "paragraph":
+            return (
+              <p
+                key={i}
+                className="my-4"
+              >
+                {block.content}
+              </p>
+            );
+          case "code":
+            return (
+              <CodeBlock
+                key={i}
+                code={block.code}
+                language={block.language}
+                className="my-4"
+              />
+            );
+          default:
+            return null;
         }
-        // Skip language identifiers
-        if ((index - 1) % 3 === 0 && index > 0) {
-          return null;
-        }
-        // Regular content
-        if (part.trim()) {
-          return (
-            <div
-              key={index}
-              dangerouslySetInnerHTML={{
-                __html: part.replace(/\n/g, "<br />"),
-              }}
-            />
-          );
-        }
-        return null;
       })}
-    </div>
+    </section>
   );
 };
 

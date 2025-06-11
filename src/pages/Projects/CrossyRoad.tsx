@@ -3,8 +3,8 @@ import CrossyRoadGame from "@/projects/CrossyRoad";
 
 const CrossyRoad = () => {
   return (
-    <section className="container mx-auto py-10">
-      <Card className="w-full mx-auto">
+    <section>
+      <Card className="w-full">
         <CardHeader>
           <CardTitle>Crossy Road</CardTitle>
           <CardDescription>

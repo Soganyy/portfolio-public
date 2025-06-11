@@ -45,15 +45,15 @@ const Header = () => {
         </DockIcon>
       </Link>
 
-      <Link to="/projects">
-        <DockIcon>
-          <FolderIcon size={18} />
-        </DockIcon>
-      </Link>
-
       <Link to="/blog">
         <DockIcon>
           <NotebookIcon size={18} />
+        </DockIcon>
+      </Link>
+
+      <Link to="/projects">
+        <DockIcon>
+          <FolderIcon size={18} />
         </DockIcon>
       </Link>
 

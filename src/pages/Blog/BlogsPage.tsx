@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { blogPosts } from "@/lib/data/blog";
+import { blogPosts } from "@/pages/Blog/lib/blog";
 import { Category } from "@/types/blog-category";
 import { BlogPost } from "@/types/blog-post";
 import { Search } from "lucide-react";
@@ -33,21 +33,8 @@ const BlogsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight">Blog</h1>
-              <p className="text-muted-foreground">
-                This is where you can learn how I look at the world.
-              </p>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Search and Filter Section */}
-      <section className="container mx-auto px-4 py-8">
+      <section className="pb-4">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -75,7 +62,7 @@ const BlogsPage: React.FC = () => {
       </section>
 
       {/* Blog Posts Grid */}
-      <main className="container mx-auto px-4 pb-12">
+      <main className="pb-12">
         {filteredPosts.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-muted-foreground">No posts found matching your criteria.</p>

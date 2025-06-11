@@ -5,7 +5,7 @@ import BlogPostPage from "./BlogPostPage";
 
 const Blog: React.FC = () => {
   return (
-    <div>
+    <div className="container mx-auto xl:px-40 py-8">
       <Routes>
         <Route
           path="/"
