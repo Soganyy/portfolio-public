@@ -7,12 +7,13 @@ import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
 import { toast } from "sonner";
 import { blogPosts } from "@/pages/Blog/lib/blog";
 import ContentRenderer from "./components/ContentRenderer";
+import { IBlogPost } from "@/types/blog-post";
 
 const BlogPostPage: React.FC = () => {
   const { postId } = useParams<{ postId: string }>();
   const navigate = useNavigate();
 
-  const post = blogPosts.find((p) => p.id === Number(postId));
+  const post: IBlogPost = blogPosts.find((p) => p.id === Number(postId));
 
   if (!post) {
     return (

@@ -2,11 +2,11 @@ import React from "react";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
-import { BlogPost } from "@/types/blog-post";
+import { IBlogPost } from "@/types/blog-post";
 import { useNavigate } from "react-router-dom";
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: IBlogPost;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ post }) => {

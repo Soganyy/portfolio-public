@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { blogPosts } from "@/pages/Blog/lib/blog";
 import { Category } from "@/types/blog-category";
-import { BlogPost } from "@/types/blog-post";
+import { IBlogPost } from "@/types/blog-post";
 import { Search } from "lucide-react";
 import { useState } from "react";
 import BlogCard from "./components/BlogCard";
@@ -13,7 +13,7 @@ const BlogsPage: React.FC = () => {
 
   const categories: Category[] = ["all", "Development"];
 
-  const filteredPosts: BlogPost[] = blogPosts.filter((post: BlogPost) => {
+  const filteredPosts: IBlogPost[] = blogPosts.filter((post: IBlogPost) => {
     const matchesSearch: boolean =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -69,7 +69,7 @@ const BlogsPage: React.FC = () => {
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredPosts.map((post: BlogPost) => (
+            {filteredPosts.map((post: IBlogPost) => (
               <BlogCard
                 key={post.id}
                 post={post}

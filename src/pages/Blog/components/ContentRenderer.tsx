@@ -1,12 +1,18 @@
-import { BlogPost } from "@/types/blog-post";
-import CodeBlock from "./CodeBlock";
+import { useState, useEffect, JSX } from "react";
+import { IBlogPost } from "@/types/blog-post";
+import { highlightCode } from "../lib/highlighter";
 
-const ContentRenderer = ({ post }: { post: BlogPost }) => {
-  return (
-    <section className="prose dark:prose-invert max-w-none mt-8">
-      {post.content.map((block, i) => {
-        switch (block.type) {
-          case "heading":
+const ContentRenderer = ({ post }: { post: IBlogPost }) => {
+  const [renderedContent, setRenderedContent] = useState<JSX.Element[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const processContent = async () => {
+      setIsLoading(true);
+
+      const processedBlocks = await Promise.all(
+        post.content.map(async (block, i) => {
+          if (block.type === "heading") {
             return (
               <h2
                 key={i}
@@ -15,7 +21,9 @@ const ContentRenderer = ({ post }: { post: BlogPost }) => {
                 {block.content}
               </h2>
             );
-          case "paragraph":
+          }
+
+          if (block.type === "paragraph") {
             return (
               <p
                 key={i}
@@ -24,21 +32,38 @@ const ContentRenderer = ({ post }: { post: BlogPost }) => {
                 {block.content}
               </p>
             );
-          case "code":
+          }
+
+          if (block.type === "code") {
+            const html = await highlightCode(block.code, block.language || "javascript");
             return (
-              <CodeBlock
+              <div
                 key={i}
-                code={block.code}
-                language={block.language}
-                className="my-4"
+                dangerouslySetInnerHTML={{ __html: html }}
               />
             );
-          default:
-            return null;
-        }
-      })}
-    </section>
-  );
+          }
+
+          return null;
+        })
+      );
+
+      setRenderedContent(processedBlocks.filter(Boolean) as JSX.Element[]);
+      setIsLoading(false);
+    };
+
+    processContent();
+  }, [post.content]);
+
+  if (isLoading) {
+    return (
+      <section className="prose dark:prose-invert max-w-none mt-8">
+        <div>Loading...</div>
+      </section>
+    );
+  }
+
+  return <section className="prose dark:prose-invert max-w-none mt-8">{renderedContent}</section>;
 };
 
 export default ContentRenderer;
