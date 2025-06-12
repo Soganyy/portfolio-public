@@ -38,7 +38,8 @@ export const highlightCode = async (
           node.properties.style = `
             background: #1a1a1a;
             padding: 1rem;
-            border-radius: 4px;
+            margin: 1rem 0;
+            border-radius: var(--radius-md);
             overflow-x: auto;
             border: 1px solid #333;
           `

@@ -1,7 +1,13 @@
 export type TContentBlock =
   | { type: "paragraph"; content: string }
-  | { type: "heading"; content: string }
-  | { type: "code"; language: string; code: string };
+  | {
+      type: "heading-1" | "heading-2" | "heading-3" | "heading-4" | "heading-5" | "heading-6";
+      content: string;
+    }
+  | { type: "code"; language: string; code: string }
+  | { type: "link"; href: string; content: string }
+  | { type: "list"; ordered: boolean; items: string[] }
+  | { type: "image"; src: string; alt?: string; caption?: string };
 
 export interface IBlogPost {
   id: number;
