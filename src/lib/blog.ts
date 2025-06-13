@@ -5,15 +5,15 @@ export const blogPosts: IBlogPost[] = [
     id: 1,
     title: "The JavaScript Core",
     excerpt:
-      "Core concepts of JS as a language (this is not the last version and it will be updated",
+      "Core concepts of JS as a language (this is not the last version and it will be updated)",
     category: "Development",
     tags: ["javascript", "fundamentals", "beginners", "programming"],
     date: "2025-06-10",
     readTime: "8 min",
     content: [
       {
-        type: "heading-5",
-        content: "This is the very beginning...",
+        type: "heading-3",
+        content: "How I ended up here...",
       },
       {
         type: "paragraph",
@@ -33,7 +33,7 @@ export const blogPosts: IBlogPost[] = [
       },
 
       {
-        type: "heading-5",
+        type: "heading-3",
         content: "What is it?",
       },
       {
@@ -57,29 +57,48 @@ export const blogPosts: IBlogPost[] = [
       },
 
       {
-        type: "heading-5",
+        type: "heading-3",
         content: "Let's get our hands dirty",
       },
       {
         type: "paragraph",
         content: `I see a programming language as a tool designed to instruct computers 
-        to store and process data exactly the way we want. So let's begin with the storage part.`,
+        to store and process data exactly the way we want. And when we understand the basics 
+        lying behind the picture, we can easily grab anything beyond that. First we should understand storage,
+        then the processing part.`,
       },
+      {
+        type: "paragraph",
+        content: `JavaScript was built to shake things up—to make coding 
+        in the browser more fluid and accessible. It gives us an environment 
+        where we can do pretty much whatever we want. One reason for this is 
+        that from the beginning, the language had to let users interact and 
+        make real-time changes—like poking at the code while it runs. That’s 
+        why we can do things like reassign a variable’s type (a string 
+        becoming an array) or add new properties to objects on the fly. 
+        You don’t get that kind of freedom in most strictly typed languages—they 
+        just don’t work that way.`,
+      },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Variables",
       },
       {
         type: "paragraph",
-        content: `Variables are containers used to store data values. When we declare a 
-        variable, we create a named reference to a value stored in memory (like creating a space to store something there).
-          In JavaScript, there are three ways to declare variables: var, let, and const. 
-          Each comes with its own behavior around scope, hoisting, and reassignment. var 
-          is function-scoped and hoisted with an initial value of undefined. 
-          In contrast, let and const are block-scoped and are not initialized until the 
-          code defining them runs. const also prevents reassignment, though it doesn't 
-          make the actual data immutable.`,
+        content: `Variables are containers used to store data values. 
+        When we declare a variable, we create a named reference to a 
+        value in memory—basically setting aside a space to keep something. 
+        In JavaScript, there are three ways to declare variables: var, let, 
+        and const. Each one behaves differently when it comes to scope, hoisting, and reassignment.
+        var is function-scoped and gets hoisted with an initial value of undefined. 
+        The reason for that is simple—back then, there wasn’t really a need for more 
+        precise scoping. But as JavaScript grew, the limitations of var led to the 
+        introduction of let and const. In contrast, let and const are block-scoped 
+        and aren’t initialized until the code that defines them actually runs. 
+        const also prevents reassignment, but that doesn’t mean the data it holds 
+        is immutable—it just means the reference can’t be changed.`,
       },
       {
         type: "code",
@@ -90,28 +109,41 @@ var legacy = "old"; // function-scoped and hoisted with undefined`,
       },
       {
         type: "paragraph",
-        content: `JavaScript uses dynamic typing, which means variable types are determined at runtime. 
-          This allows a variable to hold different types of values over its lifetime. 
-          For example, a variable that starts as a number can later hold a string or an object. 
-          While this offers flexibility, it also means developers need to stay mindful of 
-          how types change throughout their code to avoid unexpected behavior or subtle bugs.`,
+        content: `JavaScript uses dynamic typing, which means variable types are 
+        determined at runtime. This allows a variable to hold different types of 
+        values over its lifetime. For example, a variable that starts off as a 
+        number can later be reassigned to a string or even an object. While this 
+        offers a lot of flexibility, it also means developers need to be careful 
+        about how types change throughout their code—otherwise, it’s easy to run 
+        into unexpected behavior or subtle bugs.`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Hoisting",
       },
       {
         type: "paragraph",
-        content: `So what is hoisting? Hoisting is a JavaScript mechanism where variables and function declarations 
-        are moved to the top of their containing scope during compilation.
-        Why? Because when JavaScript was first created, it was designed to be forgiving and easy to use for beginners.
-        The second reason behind this is to allocate memory before execution
-        and to avoid errors. Also, hoisting makes functions available to use before their declaration. 
-        var is hoisted to the top of its function scope, meaning it can be 
-        used before its declaration, but it will be undefined until the line where it is assigned a value is reached.
-        let and const are also hoisted, but they are not initialized until their declaration 
-        line is executed, leading to a "temporal dead zone" where accessing them before declaration results in a ReferenceError.`,
+        content: `Hoisting is a JavaScript mechanism where variable and function 
+        declarations are moved to the top of their containing scope during compilation. 
+        Why? Because the language is designed to be forgiving and easy to use—especially 
+        for beginners. Another reason is that memory is allocated before code execution, 
+        helping to prevent certain types of errors.`,
+      },
+      {
+        type: "paragraph",
+        content: `One key effect of hoisting is that functions can be used before they’re 
+        defined in the code. When it comes to variables, var is hoisted to the top of 
+        its function scope. That means it can be used before its declaration, but its 
+        value will be undefined until the line where it's actually assigned.`,
+      },
+      {
+        type: "paragraph",
+        content: `let and const are also hoisted, but they behave differently—they’re 
+        not initialized until the code reaches their declaration. This creates what's 
+        known as the temporal dead zone, where trying to access them before they’re 
+        defined will throw a ReferenceError.`,
       },
       {
         type: "code",
@@ -127,22 +159,33 @@ var hoistedVar = 2;
 console.log(temp); // ReferenceError => TDZ (temporal dead zone)
 let temp = 5;`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Scoping",
       },
       {
         type: "paragraph",
-        content: `Scoping in JavaScript refers to the context in which variables and functions are accessible, 
-        determining where in the code a variable can be referenced or modified. It is just these things that either 
-        holds the variable or makes it visible to everywhere. var only happens to stay in the scope when used in functions, 
-        and let and const no matter what doesn't leave the scope. This matters because the scope
-        dictates the variable's lifetime and visibility, directly impacting program behavior and maintainability. 
-        JavaScript uses lexical scoping, meaning the structure of the code at writing time—not runtime—defines variable 
-        accessibility. With the introduction of let and const, block-level scoping became standard, allowing more precise 
-        control over variable visibility compared to the function-level scope of var. An important consequence of this scoping 
-        model is variable shadowing:`,
+        content: `Scoping in JavaScript refers to the context in which variables and functions 
+        are accessible. It determines where in the code a variable can be referenced or modified. 
+        Just think of curly braces—they create a scope(like a box inside a box inside a box) 
+        behind the scenes for the code inside them. var sticks around only within function scope, 
+        while let and const—no matter what—stay confined to the block they're defined in.`,
+      },
+      {
+        type: "paragraph",
+        content: `This matters because scope controls a variable’s lifetime—meaning when it 
+        becomes eligible for garbage collection after the scope ends—and its visibility. Both 
+        directly impact how your program behaves and how maintainable it is. JavaScript uses 
+        lexical scoping, which means the structure of the code at writing time—not 
+        runtime—determines where variables are accessible.`,
+      },
+      {
+        type: "paragraph",
+        content: `With the introduction of let and const, block-level scoping became the standard, 
+        offering more precise control over variable visibility compared to the function-level scoping 
+        of var. One important consequence of this scoping model is variable shadowing:`,
       },
       {
         type: "code",
@@ -152,7 +195,7 @@ let temp = 5;`,
   let b = 2;
   const c = 3;
   if (true) {
-    var a = 4; // redeclares within function scope
+    var a = 4; // redeclares within function scope (this is shadowing)
     let b = 5; // new variable in block scope
     const c = 6; // new constant in block scope
   }
@@ -162,17 +205,28 @@ scopeTest();`,
       },
 
       {
-        type: "heading-6",
-        content: "Shadowing (I learned the name of this term creating this post)",
+        type: "heading-4",
+        content: "Shadowing",
       },
       {
         type: "paragraph",
-        content: `A variable declared in an inner scope uses the same name as one in an outer scope, effectively 
-        hiding the outer variable within that inner context. The JavaScript engine creates a variable environment (for function-scoped vars and parameters), 
-        lexical environment (for block-scoped vars like let and const), and scope chain (reference to the outer environment). It searches the current lexical environment,
-        and if it finds a match here, it stops. While shadowing enables encapsulation and reuse of variable names, it can also 
-        lead to confusion or bugs if not managed carefully. Overall, scoping—including shadowing—ensures variables are confined to their intended
-        contexts, promoting cleaner, more predictable, and maintainable code.`,
+        content: `When a variable declared in an inner scope shares the same name as 
+        one in an outer scope, it effectively shadows the outer variable within that 
+        inner context. The JavaScript engine manages this through the variable environment 
+        (for function-scoped var and parameters), the lexical environment (for block-scoped 
+        let and const), and the scope chain, which is a reference to outer environments.`,
+      },
+      {
+        type: "paragraph",
+        content: `During variable resolution, JavaScript first searches the current lexical 
+        environment; if it finds a matching variable there, it stops looking further. While 
+        shadowing allows encapsulation and reuse of variable names, it can also cause 
+        confusion or subtle bugs if not handled carefully.`,
+      },
+      {
+        type: "paragraph",
+        content: `Overall, scoping—including shadowing—ensures variables are confined to 
+        their intended contexts, promoting cleaner, more predictable, and maintainable code.`,
       },
       {
         type: "code",
@@ -205,19 +259,78 @@ console.log("In global scope:", value); // 'outer'
         └── value = "middle"
             └── innerFunction Scope
                 └── value = "inner"
-`,
+
+// This shows the box idea`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Data Types and References",
       },
       {
         type: "paragraph",
         content: `Data types are separated into two categories: primitive and reference types.
-        Primitive types include numbers (stored in 64-bit floating point), strings, booleans, null, undefined, and symbols. BigInt is also a primitive to hold integers larger than 2^53 - 1.
-        (Internally, the number is broken into fixed-size chunks (e.g., 32- or 64-bit units) — each of these chunks is called a limb and stored separately).
-        These types are immutable and compared by value, meaning two variables with the same primitive value are considered equal.`,
+        Primitive types include numbers, strings, booleans, 
+        null, undefined, and symbols and BigInt.`,
+      },
+      {
+        type: "paragraph",
+        content: `In JavaScript, primitive types are the most basic units of data and include 
+        Number, BigInt, String, Boolean, null, undefined, and Symbol. These values are immutable 
+        and compared by value, meaning their content, not reference, determines equality.  
+           `,
+      },
+      {
+        type: "paragraph",
+        content: `The Number type represents both integers and floating-point values using the 64-bit IEEE 
+        754 format, which introduces rounding errors in some cases due to binary precision limits
+        (I'll probably give a link about this precision thing).
+        To handle integers beyond the safe range of Number (above 2^53 - 1), JavaScript provides 
+        the BigInt type, which stores large integers by splitting them into smaller chunks internally 
+        (called limbs) and supports arbitrary precision arithmetic. Just separate memory locations merged
+        in need.`,
+      },
+      {
+        type: "paragraph",
+        content: `JavaScript strings are stored as contiguous sequences of 16-bit code units 
+        using UTF-16 encoding. Simple characters take one unit (2 bytes), while complex characters 
+        like emojis use surrogate pairs (4 bytes total). Internally, engines like V8 store strings 
+        in flat buffers or rope structures (for performance). When you create or manipulate strings, 
+        you're interacting with read-only memory; changes always create new strings in new memory 
+        regions. This model allows efficient sharing, memory safety, and high-speed optimizations, 
+        but also means frequent string operations can incur allocation overhead.`,
+      },
+      {
+        type: "paragraph",
+        content: `The Boolean type has only two values: true and false, used to control logic and flow.`,
+      },
+      {
+        type: "paragraph",
+        content: `In JavaScript, null and undefined are both used to represent the absence of a value, 
+        but they serve distinct purposes and behave differently at a semantic and technical level. 
+        undefined is the default value assigned to a variable that has been declared but not initialized, 
+        or to a function parameter that wasn't provided an argument—it reflects a value that is missing 
+        because nothing was explicitly set. In contrast, null is an intentional assignment, used by 
+        developers to signify that a variable should hold no value. Internally, undefined is a primitive 
+        with its own type, while null is a primitive too, but with the quirk that typeof null returns 
+        "object"—a legacy bug from JavaScript's early implementation. Memory-wise, both are tagged 
+        with specific internal representations; undefined is often handled as a unique sentinel value, 
+        while null is typically encoded as a zero reference or a special tagged constant to indicate 
+        "intentional emptiness." Although both are falsy in boolean contexts, their differences are 
+        important: undefined signals absence by omission, while null signals absence by intention. 
+        Understanding when to use each—undefined for uninitialized or missing values, and null for 
+        explicitly empty ones—is essential for writing precise, predictable code.`,
+      },
+      {
+        type: "paragraph",
+        content: `Note: The reason typeof null === "object" is due to a legacy bug from JavaScript’s 
+        early implementation in 1995, where values were represented with type tags encoded in the 
+        lower bits of a binary word. The value null was internally stored as 0x00 (a null pointer), 
+        which happened to match the bit pattern for objects (000). So when typeof checked those bits, 
+        it incorrectly identified null as an object. Although this is technically wrong, it was never 
+        fixed because too much existing code depended on the behavior, so it's now a permanent quirk 
+        of the language.`,
       },
       {
         type: "paragraph",
@@ -254,9 +367,10 @@ let r2 = r1;
 r2.count = 99;
 console.log(r1.count); // 99 => references share same heap object`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Objects, Prototyping",
       },
       {
@@ -267,12 +381,24 @@ console.log(r1.count); // 99 => references share same heap object`,
       },
       {
         type: "paragraph",
-        content: `Everything that isn't a primitive is technically an object or derived from one, including things like dates, errors, 
+        content: `Everything that isn't a primitive is technically an 
+        object or derived from one, including things like dates, errors, 
         regular expressions, and even wrapper objects for primitives like new Number(5).
-        JavaScript's object-oriented backbone shows up constantly, whether you're handling JSON, attaching methods to prototypes, or manipulating the DOM.
-        So in practice, understanding how objects behave, how they're passed around, and how they're structured is pretty much essential to writing meaningful JavaScript.`,
+        JavaScript's object-oriented backbone shows up constantly, whether you're handling 
+        JSON, attaching methods to prototypes, or manipulating the DOM.
+        So in practice, understanding how objects behave, how they're passed around, and 
+        how they're structured is pretty much essential to writing meaningful JavaScript.`,
       },
-
+      {
+        type: "paragraph",
+        content: `Primitives can be temporarily wrapped by objects. When you access a method or 
+        property on a primitive (like "abc".length), JavaScript automatically wraps the 
+        primitive in a corresponding object (String, Number, Boolean, etc.), gives you 
+        access to methods and properties, and then discards the wrapper immediately, 
+        called auto-boxing.
+        These wrapper objects contain the primitive value and expose methods from the 
+        prototype, but the primitive itself remains unchanged.`,
+      },
       {
         type: "paragraph",
         content: `Prototyping is the mechanism by which an object inherits properties and behaviors from another object. 
@@ -344,7 +470,7 @@ console.log("walk" in rabbit);               // true, found via prototype
       },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Deep Copy",
       },
       {
@@ -393,26 +519,35 @@ console.log(original.b.c); // still 99 — no change`,
       },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Garbage Collection",
       },
       {
         type: "paragraph",
-        content: `I would also like to talk about JavaScript's garbage collection here, because I find it really interesting and can't stay without placing that information.
-        JS starts to look at objects from the root. If any object is somehow connected to the root, it is considered reachable and will not be garbage collected.
-        And the ones that are not are considered unreachable and will be garbage collected. This solves the circular reference problem, where in previous versions, objects were garbage 
-        collected based on their connection to other objects. This meant that if two objects referenced each other, they would never be garbage collected, even if they were not used.`,
+        content: `I would also like to talk about JavaScript's garbage collection here, 
+        because I find it really interesting and can't stay without placing that information.
+        JS starts to look at objects from the root. If any object is somehow connected to 
+        the root, it is considered reachable and will not be garbage collected.
+        And the ones that are considered unreachable will be cleared. 
+        This solves the circular reference problem, where in previous versions, objects were garbage 
+        collected based on their connection to other objects. This meant that if two 
+        objects referenced each other, they would never be garbage collected, even 
+        if they were not used and stayed out of the code we write.`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Functions, Closures",
       },
       {
         type: "paragraph",
-        content: `You can think of a function just like you learned in high school math - we put some input there, it does some calculations,
-        and returns some output. Of course, it is more than this explanation, but I think understanding this sentence will make anyone go to a point that is far from here.
-        And in JavaScript, functions are first-class citizens, meaning they can be assigned to variables, passed as arguments, and returned from other functions.`,
+        content: `You can think of a function just like you learned in high school 
+        math - we put some input there, it does some calculations,
+        and returns some output. Of course, it is more than this explanation, but 
+        I think understanding this sentence will make anyone go to a point that is far from here.
+        And in JavaScript, functions are first-class citizens, meaning they can be assigned 
+        to variables, passed as arguments, and returned from other functions.`,
       },
       {
         type: "code",
@@ -428,11 +563,14 @@ console.log(reveal()); // 'secret' => closure keeps hidden alive in memory`,
       },
       {
         type: "paragraph",
-        content: `And the closure is a function that retains access to its lexical scope, even when the function is executed outside that scope.
-How does that happen? When a function is created, it captures a reference to the lexical environment in which it was defined.
-If the function continues to reference any variables from that outer scope, the JavaScript engine keeps that environment alive — it won't be garbage collected.
-In essence, the outer context stays in memory simply because something (the inner function) is still pointing to it.
-It's the same principle used with objects: as long as there's a reference to an object, it's not eligible for cleanup.`,
+        content: `The closure is ability of a function that retains access 
+        to its lexical scope, even when the function is executed outside that scope.
+        How does that happen? When a function is created, it captures a 
+        reference to the lexical environment in which it was defined.
+        If the function continues to reference any variables from that outer 
+        scope, the JavaScript engine keeps that environment alive — it won't be garbage collected.
+        In essence, the outer context stays in memory simply because something (the inner function) is still pointing to it.
+        It's the same principle used with objects: as long as there's a reference to an object, it's not eligible for cleanup.`,
       },
       {
         type: "paragraph",
@@ -484,9 +622,10 @@ console.log(fixedFuncs.map((f) => f())); // [0, 1, 2]`,
         type: "paragraph",
         content: `The closure, most of the time, is used to create private variables and methods; you can think of it as a way to encapsulate data.`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "this",
       },
       {
@@ -496,6 +635,16 @@ console.log(fixedFuncs.map((f) => f())); // [0, 1, 2]`,
          not when you write the code. It's also one of the things that makes JavaScript 
          flexible and dangerous — because what this refers to can change depending 
          on how a function is called.`,
+      },
+      {
+        type: "paragraph",
+        content: `In the global context, this refers to the window object in browsers. 
+        In Node.js, it doesn't point to the global object—instead, it’s module.exports 
+        at the top level, and undefined inside functions when using strict mode. The 
+        keyword doesn’t care where it’s written; it only reacts to how the code is run. 
+        It’s like asking, “Who owns the environment I’m in right now?” and pointing there. 
+        It’s context-aware, not scope-aware, which makes it more dynamic but also more prone 
+        to confusion if you’re not watching how functions are called.`,
       },
       {
         type: "code",
@@ -563,9 +712,10 @@ console.log(p.name); // "Charlie"
 // Global \`this\` (in browser, it's window)
 console.log(this); // In browser: window object`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Classes",
       },
       {
@@ -580,6 +730,10 @@ console.log(this); // In browser: window object`,
         content: `JavaScript didn't suddenly become class-based. It just gave developers 
         a more familiar-looking structure — especially for those coming from traditional
          OOP languages — to build things using the existing prototype-based model.`,
+      },
+      {
+        type: "paragraph",
+        content: `The following code will explain everything about classes if you have the ability to read code:`,
       },
       {
         type: "code",
@@ -665,9 +819,10 @@ UtilsAlt.logName = function (obj) {
 
 UtilsAlt.logName(a2); // "Name is: GenericAlt"`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "typeof and instanceof",
       },
       {
@@ -688,9 +843,10 @@ UtilsAlt.logName(a2); // "Name is: GenericAlt"`,
         code: `console.log(typeof []); // 'object' => arrays are objects
 console.log([] instanceof Array); // true => prototype chain confirms type`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Modules",
       },
       {
@@ -718,9 +874,10 @@ console.log([] instanceof Array); // true => prototype chain confirms type`,
         code: `export function add(a, b) { return a + b; }
 import { add } from './math.js';`,
       },
+      { type: "separator-space" },
 
       {
-        type: "heading-6",
+        type: "heading-4",
         content: "Event Loop",
       },
       {

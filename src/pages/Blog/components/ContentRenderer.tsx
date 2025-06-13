@@ -3,10 +3,29 @@ import { IBlogPost } from "@/types/blog-post";
 import { highlightCode } from "../lib/highlighter";
 import Loader from "@/components/common/Loader";
 import React from "react";
+import { Separator } from "@/components/ui/separator";
 
 const ContentRenderer = ({ post }: { post: IBlogPost }) => {
   const [renderedContent, setRenderedContent] = useState<JSX.Element[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const fontSizeMap: Record<1 | 2 | 3 | 4 | 5 | 6, string> = {
+    1: "text-6xl",
+    2: "text-5xl",
+    3: "text-4xl",
+    4: "text-3xl",
+    5: "text-2xl",
+    6: "text-xl",
+  };
+
+  const marginTopMap: Record<1 | 2 | 3 | 4 | 5 | 6, string> = {
+    1: "mt-16",
+    2: "mt-14",
+    3: "mt-10",
+    4: "mt-8",
+    5: "mt-6",
+    6: "mt-4",
+  };
 
   useEffect(() => {
     const processContent = async () => {
@@ -22,7 +41,9 @@ const ContentRenderer = ({ post }: { post: IBlogPost }) => {
               HeadingTag,
               {
                 key: i,
-                className: `font-semibold mt-${Math.max(4, 10 - level)} text-${3 + (6 - level)}xl`,
+                className: `font-semibold ${
+                  marginTopMap[level as keyof typeof marginTopMap] || "mt-4"
+                } ${fontSizeMap[level as keyof typeof fontSizeMap]}`,
               },
               "content" in block ? block.content : ""
             );
@@ -97,6 +118,14 @@ const ContentRenderer = ({ post }: { post: IBlogPost }) => {
                 )}
               </figure>
             );
+          }
+
+          if (block.type === "separator-line") {
+            return <Separator />;
+          }
+
+          if (block.type === "separator-space") {
+            return <div className="mt-16" />;
           }
 
           return null;

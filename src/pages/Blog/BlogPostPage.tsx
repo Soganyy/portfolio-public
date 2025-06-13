@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
 import { toast } from "sonner";
-import { blogPosts } from "@/pages/Blog/lib/blog";
+import { blogPosts } from "@/lib/blog";
 import ContentRenderer from "./components/ContentRenderer";
 
 const BlogPostPage: React.FC = () => {
@@ -67,7 +67,7 @@ const BlogPostPage: React.FC = () => {
             </Button>
           </div>
 
-          <h1 className="text-4xl font-bold tracking-tight mb-4">{post.title}</h1>
+          <h1 className="text-6xl font-bold tracking-tight mb-4">{post.title}</h1>
           <p className="text-xl text-muted-foreground mb-6">{post.excerpt}</p>
 
           <div className="flex items-center justify-end border-b py-4">

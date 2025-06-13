@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { blogPosts } from "@/pages/Blog/lib/blog";
+import { blogPosts } from "@/lib/blog";
 import { Category } from "@/types/blog-category";
 import { IBlogPost } from "@/types/blog-post";
 import { Search } from "lucide-react";
