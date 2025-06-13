@@ -40,7 +40,7 @@ export const blogPosts: IBlogPost[] = [
         type: "paragraph",
         content: `JavaScript (JS) is a lightweight, interpreted (or just-in-time compiled),
          high-level, dynamically typed, prototype-based programming language with first-class 
-         functions. We will see what this means in the following sections.`,
+         functions. So many in one -_-`,
       },
       {
         type: "paragraph",
@@ -48,13 +48,15 @@ export const blogPosts: IBlogPost[] = [
           and CSS (still in early stages) handled styling. But there was no way to 
           make pages react to user input without a full page reload. 
           This limited user experience and web application potential, and it led to 
-          JS being invented by Brendan Eich at Netscape in 10 days in 1995. 
+          JS being invented by Brendan Eich at Netscape in 10 days in 1995 (you heard it right). 
           He first came up with the name Mocha, then changed it to LiveScript, and finally 
           to JavaScript for marketing purposes. Then the language was standardized 
           by ECMA International as ECMAScript (ES) in 1997. On behalf of the purpose of 
           browsers, time has passed and the language now has the version it currently 
-          has — that is all I can say for now about the history.`,
+          has (like we can get out of browsers using environments like Node.js) — 
+          that is all I can say for now about the history.`,
       },
+      { type: "separator-line" },
 
       {
         type: "heading-3",
@@ -63,9 +65,10 @@ export const blogPosts: IBlogPost[] = [
       {
         type: "paragraph",
         content: `I see a programming language as a tool designed to instruct computers 
-        to store and process data exactly the way we want. And when we understand the basics 
-        lying behind the picture, we can easily grab anything beyond that. First we should understand storage,
-        then the processing part.`,
+        to store and process data exactly the way we want. I try to keep the foundation 
+        clear and beleive that when we understand the basics lying behind the picture, 
+        we can easily grab anything beyond that, so don't forget about the sotrage and 
+        processing part. First we should understand storage, then the processing part.`,
       },
       {
         type: "paragraph",
@@ -91,7 +94,8 @@ export const blogPosts: IBlogPost[] = [
         When we declare a variable, we create a named reference to a 
         value in memory—basically setting aside a space to keep something. 
         In JavaScript, there are three ways to declare variables: var, let, 
-        and const. Each one behaves differently when it comes to scope, hoisting, and reassignment.
+        and const. Each one behaves differently when it comes to scope, hoisting, 
+        and reassignment (we will get to this terms later).
         var is function-scoped and gets hoisted with an initial value of undefined. 
         The reason for that is simple—back then, there wasn’t really a need for more 
         precise scoping. But as JavaScript grew, the limitations of var led to the 
@@ -143,7 +147,8 @@ var legacy = "old"; // function-scoped and hoisted with undefined`,
         content: `let and const are also hoisted, but they behave differently—they’re 
         not initialized until the code reaches their declaration. This creates what's 
         known as the temporal dead zone, where trying to access them before they’re 
-        defined will throw a ReferenceError.`,
+        defined will throw a ReferenceError. That behaviour leads us to write clean
+        code, it reduces the probability of bugs.`,
       },
       {
         type: "code",
@@ -169,7 +174,7 @@ let temp = 5;`,
         type: "paragraph",
         content: `Scoping in JavaScript refers to the context in which variables and functions 
         are accessible. It determines where in the code a variable can be referenced or modified. 
-        Just think of curly braces—they create a scope(like a box inside a box inside a box) 
+        Just think of curly braces—they create a scope (like a box inside a box inside a box) 
         behind the scenes for the code inside them. var sticks around only within function scope, 
         while let and const—no matter what—stay confined to the block they're defined in.`,
       },
@@ -194,13 +199,16 @@ let temp = 5;`,
   var a = 1;
   let b = 2;
   const c = 3;
+
   if (true) {
     var a = 4; // redeclares within function scope (this is shadowing)
     let b = 5; // new variable in block scope
     const c = 6; // new constant in block scope
   }
+
   console.log(a, b, c); // 4, 2, 3 => var is function-wide, let/const are block-bound
 }
+
 scopeTest();`,
       },
 
@@ -219,9 +227,9 @@ scopeTest();`,
       {
         type: "paragraph",
         content: `During variable resolution, JavaScript first searches the current lexical 
-        environment; if it finds a matching variable there, it stops looking further. While 
-        shadowing allows encapsulation and reuse of variable names, it can also cause 
-        confusion or subtle bugs if not handled carefully.`,
+        environment; if it finds a matching variable there, it stops looking further. The 
+        variable in the outer scope doesn't get overriden. While shadowing allows encapsulation 
+        and reuse of variable names, it can also cause confusion or subtle bugs if not handled carefully.`,
       },
       {
         type: "paragraph",
@@ -270,9 +278,7 @@ console.log("In global scope:", value); // 'outer'
       },
       {
         type: "paragraph",
-        content: `Data types are separated into two categories: primitive and reference types.
-        Primitive types include numbers, strings, booleans, 
-        null, undefined, and symbols and BigInt.`,
+        content: `Data types are separated into two categories: primitive and reference types.`,
       },
       {
         type: "paragraph",
@@ -285,25 +291,33 @@ console.log("In global scope:", value); // 'outer'
         type: "paragraph",
         content: `The Number type represents both integers and floating-point values using the 64-bit IEEE 
         754 format, which introduces rounding errors in some cases due to binary precision limits
-        (I'll probably give a link about this precision thing).
+        (I leave a link below about floating point representation).
         To handle integers beyond the safe range of Number (above 2^53 - 1), JavaScript provides 
         the BigInt type, which stores large integers by splitting them into smaller chunks internally 
-        (called limbs) and supports arbitrary precision arithmetic. Just separate memory locations merged
-        in need.`,
+        (called limbs).`,
+      },
+      {
+        type: "link",
+        href: "https://youtu.be/bbkcEiUjehk?si=vTNeYO4D3LGG3C7w",
+        content: "The floating-point number presentation explanation video",
       },
       {
         type: "paragraph",
         content: `JavaScript strings are stored as contiguous sequences of 16-bit code units 
         using UTF-16 encoding. Simple characters take one unit (2 bytes), while complex characters 
-        like emojis use surrogate pairs (4 bytes total). Internally, engines like V8 store strings 
-        in flat buffers or rope structures (for performance). When you create or manipulate strings, 
+        like emojis use surrogate pairs (4 bytes total) - this also leads to the miscalculation of length of strings. 
+        Internally, engines like V8 store strings in flat buffers or rope structures 
+        (for performance it chooses between either a flat array of strings
+        or rope structure where it remembers the location of two values and combine them.). 
+        When you create or manipulate strings, 
         you're interacting with read-only memory; changes always create new strings in new memory 
         regions. This model allows efficient sharing, memory safety, and high-speed optimizations, 
         but also means frequent string operations can incur allocation overhead.`,
       },
       {
         type: "paragraph",
-        content: `The Boolean type has only two values: true and false, used to control logic and flow.`,
+        content: `The Boolean type has only two values: true and false, used to control logic and flow.
+        Just a 0 or 1 in a bit. Pretty, right?`,
       },
       {
         type: "paragraph",
@@ -314,12 +328,10 @@ console.log("In global scope:", value); // 'outer'
         because nothing was explicitly set. In contrast, null is an intentional assignment, used by 
         developers to signify that a variable should hold no value. Internally, undefined is a primitive 
         with its own type, while null is a primitive too, but with the quirk that typeof null returns 
-        "object"—a legacy bug from JavaScript's early implementation. Memory-wise, both are tagged 
-        with specific internal representations; undefined is often handled as a unique sentinel value, 
-        while null is typically encoded as a zero reference or a special tagged constant to indicate 
-        "intentional emptiness." Although both are falsy in boolean contexts, their differences are 
-        important: undefined signals absence by omission, while null signals absence by intention. 
-        Understanding when to use each—undefined for uninitialized or missing values, and null for 
+        "object"—a legacy bug from JavaScript's early implementation. JavaScript engines store undefined 
+        and null using internal shortcodes (tags) instead of full objects. undefined gets a unique internal 
+        marker (like 0x1f) to show a variable was never set, while null is usually represented as a zero-like value (like 0x00) to 
+        signal a deliberate absence of value. Understanding when to use each—undefined for uninitialized or missing values, and null for 
         explicitly empty ones—is essential for writing precise, predictable code.`,
       },
       {
@@ -337,35 +349,60 @@ console.log("In global scope:", value); // 'outer'
         content: `On the other hand, reference types include objects, arrays, and functions.
         These are mutable and compared by reference, meaning two variables pointing to the same object are considered equal.
         Arrays and functions are also objects, and what I understand is that JavaScript is based on objects most of the time. 
-        Like, you can look at something and the probability of that being an object is high. The reason behind this is JavaScript's forgiving nature.`,
+        Like, you can look at something and the probability of that being an object is high. 
+        I want to mention again that the reason behind this is JavaScript's forgiving nature and we will dive to the objects deeper.`,
       },
       {
         type: "code",
         language: "javascript",
-        code: `let str = "hi";
-let arr = [1, 2];
-let obj = { a: 1 };
+        code: `// --- Primitive Types: Immutable & Compared by Value ---
+let num = 42;                   // Number (uses 64-bit IEEE 754 internally)
+let big = 9007199254740993n;    // BigInt: supports values beyond Number.MAX_SAFE_INTEGER
+let str = "A";                  // String: UTF-16 encoded (16-bit units)
+let bool = true;                // Boolean: internally just a bit (0 or 1)
+let undef;                      // undefined: declared but not assigned
+let nothing = null;             // null: intentionally empty
+let sym = Symbol("id");         // Symbol: unique and immutable
 
-function mutate(o) {
-  o.a = 42;
+console.log(typeof big);        // 'bigint'
+console.log(typeof undef);      // 'undefined'
+console.log(typeof nothing);    // 'object' ← legacy bug, see explanation above
+
+// Immutability Example
+let original = "hi";
+let copy = original;
+copy = "bye";
+console.log(original); // "hi" – original remains unchanged
+
+// --- Reference Types: Mutable & Compared by Reference ---
+let obj1 = { value: 10 };
+let obj2 = { value: 10 };
+let obj3 = obj1;
+
+console.log(obj1 === obj2); // false – different objects, even if contents match
+console.log(obj1 === obj3); // true – same reference
+
+// Mutability Example
+obj3.value = 99;
+console.log(obj1.value); // 99 – because obj3 points to obj1
+
+// --- String Encoding Quirk ---
+let emoji = "😄";
+console.log(emoji.length); // 2 – due to surrogate pairs in UTF-16
+
+// --- Practical Distinction Between undefined and null ---
+function demo(x) {
+  if (x === undefined) {
+    console.log("Value was omitted (undefined).");
+  } else if (x === null) {
+    console.log("Value was explicitly set to null.");
+  } else {
+    console.log("Value is:", x);
+  }
 }
-mutate(obj); // obj.a === 42 => object reference is shared (shallow mutation)
-
-function reassign(o) {
-  o = { a: 100 }; // the reference of literal is written to o, not the original object
-}
-reassign(obj); // obj.a still 42 => new object assigned only inside function
-
-// Memory: reference vs value
-let a1 = 5;
-let a2 = a1;
-a2 = 10;
-console.log(a1); // 5 => primitives copied by value
-
-let r1 = { count: 1 };
-let r2 = r1;
-r2.count = 99;
-console.log(r1.count); // 99 => references share same heap object`,
+demo();         // Value was omitted (undefined)
+demo(null);     // Value was explicitly set to null
+demo(123);      // Value is: 123`,
       },
       { type: "separator-space" },
 
@@ -460,13 +497,13 @@ console.log("walk" in rabbit);               // true, found via prototype
       },
       {
         type: "paragraph",
-        content: `JavaScript was designed with flexibility in mind, allowing developers 
+        content: `This feature of JavaScript also makes it different, allowing developers 
         to make changes dynamically at runtime—something strictly typed languages like 
         Java or C# do not permit. Its object-based structure plays a crucial role in 
         enabling this dynamism. Unlike rigidly typed languages that enforce compile-time
-         checks, JavaScript's dynamic typing and prototype-based objects allow for 
-         rapid development and on-the-fly modifications, accommodating the unpredictable 
-         nature of web programming.`,
+        checks, JavaScript's dynamic typing and prototype-based objects allow for 
+        rapid development and on-the-fly modifications, accommodating the unpredictable 
+        nature of web programming.`,
       },
 
       {
@@ -515,7 +552,8 @@ console.log(original.b.c); // still 99 — no change`,
       },
       {
         type: "paragraph",
-        content: `Note: structuredClone() is a modern, safe alternative for deep cloning.`,
+        content: `Note: structuredClone() is a modern, safe alternative for deep cloning 
+        (I just got it from AI, I don't even know this thing exists).`,
       },
 
       {
@@ -524,7 +562,7 @@ console.log(original.b.c); // still 99 — no change`,
       },
       {
         type: "paragraph",
-        content: `I would also like to talk about JavaScript's garbage collection here, 
+        content: `I would also like to talk about JavaScript's garbage collection here a bit, 
         because I find it really interesting and can't stay without placing that information.
         JS starts to look at objects from the root. If any object is somehow connected to 
         the root, it is considered reachable and will not be garbage collected.
