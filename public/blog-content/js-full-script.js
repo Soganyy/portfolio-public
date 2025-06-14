@@ -151,6 +151,7 @@ console.log(deleteObj.prop); // undefined
 // void operator
 console.log(void 0); // undefined
 console.log(void "hello"); // undefined
+// <a href="javascript:void(0)">Click me</a> to prevent the work js do
 
 // ==================== 5. STRINGS ====================
 let string = "Hello World";
@@ -290,6 +291,7 @@ console.log(Math.expm1(0)); // 0
 
 // Hypot and others
 console.log(Math.hypot(3, 4)); // 5
+// i didn't know something like this exists in js honeslty, there so much others but this made me: WHAT?
 
 // ==================== 7. BIGINT ====================
 let bigInt1 = 123n;

@@ -103,7 +103,7 @@ export const blogPosts: IBlogPost[] = [
         value in memory—basically setting aside a space to keep something. 
         In JavaScript, there are three ways to declare variables: var, let, 
         and const. Each one behaves differently when it comes to scope, hoisting, 
-        and reassignment (we will get to this terms later).
+        and reassignment (we will get to these later).
         var is function-scoped and gets hoisted with an initial value of undefined. 
         The reason for that is simple—back then, there wasn’t really a need for more 
         precise scoping. But as JavaScript grew, the limitations of var led to the 
@@ -221,7 +221,7 @@ scopeTest();`,
       },
 
       {
-        type: "heading-4",
+        type: "heading-6",
         content: "Shadowing",
       },
       {
@@ -230,7 +230,7 @@ scopeTest();`,
         one in an outer scope, it effectively shadows the outer variable within that 
         inner context. The JavaScript engine manages this through the variable environment 
         (for function-scoped var and parameters), the lexical environment (for block-scoped 
-        let and const), and the scope chain, which is a reference to outer environments.`,
+        let and const), and the scope chain, which is like a reference to outer environments.`,
       },
       {
         type: "paragraph",
@@ -558,11 +558,6 @@ console.log(original.b.c); // still 99 — no change`,
         JSON.parse(JSON.stringify(...)) fails with functions, undefined, 
         Symbols, Dates, Maps, Sets, and circular references.`,
       },
-      {
-        type: "paragraph",
-        content: `Note: structuredClone() is a modern, safe alternative for deep cloning 
-        (I just got it from AI, I don't even know this thing exists).`,
-      },
 
       {
         type: "heading-4",
@@ -608,6 +603,7 @@ console.log(original.b.c); // still 99 — no change`,
     return hidden; // closure retains lexical binding
   };
 }
+  
 const reveal = outer();
 console.log(reveal()); // 'secret' => closure keeps hidden alive in memory`,
       },
@@ -689,7 +685,8 @@ console.log(fixedFuncs.map((f) => f())); // [0, 1, 2]`,
         at the top level, and undefined inside functions when using strict mode. The 
         keyword doesn’t care where it’s written; it only reacts to how the code is run. 
         It’s like asking, “Who owns the environment I’m in right now?” and pointing there. 
-        It’s context-aware, not scope-aware, which makes it more dynamic but also more prone 
+        It’s context-aware, not scope-aware (the context is runtime background environment - which we don't see 
+        and the scope is just code-time user seen environtment), which makes it more dynamic but also more prone 
         to confusion if you’re not watching how functions are called.`,
       },
       {
@@ -735,7 +732,9 @@ const team2 = {
   name: "QA Team",
   members: ["Eve", "Dave"],
   list() {
-    // Regular function creates its own \`this\` — doesn't refer to team2
+    // Regular function creates its own \`this\` — doesn't refer to team2 
+    // because it doesn't bound to something and is a standalone function
+    // looking at from the context perspective
     this.members.forEach(function (member) {
       console.log(\`\${member} is in \${this.name}\`);
     });
@@ -846,24 +845,7 @@ console.log(typeof Dog);    // "function"
 
 // Methods live on the prototype
 console.log(Animal.prototype); // { speak: f }
-console.log(a.__proto__ === Animal.prototype); // true
-
-// Class syntax also supports static methods
-class Utils {
-  static logName(obj) {
-    console.log(\`Name is: \${obj.name}\`);
-  }
-}
-
-Utils.logName(a); // "Name is: Generic"
-
-// Which is just:
-function UtilsAlt() {}
-UtilsAlt.logName = function (obj) {
-  console.log(\`Name is: \${obj.name}\`);
-};
-
-UtilsAlt.logName(a2); // "Name is: GenericAlt"`,
+console.log(a.__proto__ === Animal.prototype); // true`,
       },
       { type: "separator-space" },
 
@@ -910,8 +892,8 @@ console.log([] instanceof Array); // true => prototype chain confirms type`,
         related logic into files and export what you need, then import it where it's used. This makes 
         dependencies clear and avoids polluting the global scope. Modern JavaScript uses ES Modules 
         (import / export) by default in most environments. For example, you can define a utility 
-        function in one file and export it: export function add(a, b) { return a + b; }, then import 
-        it elsewhere with import { add } from './math.js';. This structure forces better design, 
+        function in one file and export it, then import 
+        it elsewhere. This structure forces better design, 
         makes code easier to test, and helps avoid naming conflicts across large codebases. At 
         runtime, modules are scoped and only run once, no matter how many times they're imported — 
         so you also avoid duplication.`,
@@ -1056,7 +1038,7 @@ console.log("Synchronous");
       },
       {
         type: "paragraph",
-        content: `I provided the core concepts and tried to explain pretty much everything.
+        content: `That is all I can do, I tried to provide the core concepts and explain pretty much everything.
 At the end, I stop and look at what I’ve got and realize that the programming language (JS)
 is just an object-controlled tool (of course, with some flexibility in that definition).
 That’s why it ended up being created in such a short amount of time.
