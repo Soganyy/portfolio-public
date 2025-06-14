@@ -5,7 +5,7 @@ export const blogPosts: IBlogPost[] = [
     id: 1,
     title: "The JavaScript Core",
     excerpt:
-      "Core concepts of JS as a language (this is not the last version and it will be updated)",
+      "Core concepts of JS as a language (this is not the latest version and it will be updated)",
     category: "Development",
     tags: ["javascript", "fundamentals", "beginners", "programming"],
     date: "2025-06-10",
@@ -66,8 +66,8 @@ export const blogPosts: IBlogPost[] = [
         type: "paragraph",
         content: `I see a programming language as a tool designed to instruct computers 
         to store and process data exactly the way we want. I try to keep the foundation 
-        clear and beleive that when we understand the basics lying behind the picture, 
-        we can easily grab anything beyond that, so don't forget about the sotrage and 
+        clear and believe that when we understand the basics lying behind the picture, 
+        we can easily grab anything beyond that, so don't forget about the storage and 
         processing part. First we should understand storage, then the processing part.`,
       },
       {
@@ -576,7 +576,7 @@ console.log(original.b.c); // still 99 — no change`,
 
       {
         type: "heading-4",
-        content: "Functions, Closures",
+        content: "Functions",
       },
       {
         type: "paragraph",
@@ -585,7 +585,11 @@ console.log(original.b.c); // still 99 — no change`,
         and returns some output. Of course, it is more than this explanation, but 
         I think understanding this sentence will make anyone go to a point that is far from here.
         And in JavaScript, functions are first-class citizens, meaning they can be assigned 
-        to variables, passed as arguments, and returned from other functions.`,
+        to variables, passed as arguments, and returned from other functions. 
+        The function is also an object with just [[Call]] property. When I say a function 
+        is "just an object with a [[Call]] property", I mean that it's an object enhanced 
+        with an internal mechanism enabling it to behave like a function in code execution 
+        contexts—illustrating JavaScript's flexible and uniform object model.`,
       },
       {
         type: "code",
@@ -598,6 +602,10 @@ console.log(original.b.c); // still 99 — no change`,
 }
 const reveal = outer();
 console.log(reveal()); // 'secret' => closure keeps hidden alive in memory`,
+      },
+      {
+        type: "heading-4",
+        content: "Closures",
       },
       {
         type: "paragraph",
@@ -613,15 +621,7 @@ console.log(reveal()); // 'secret' => closure keeps hidden alive in memory`,
       {
         type: "paragraph",
         content: `Closures inside loops can be tricky if you don't understand 
-        how variables are scoped. In the first example, we use var, which is 
-        function-scoped. That means all the arrow functions we push into the 
-        array end up sharing the same i, and by the time they run, i has already 
-        become 3. So when we call them, we get [3, 3, 3]. In the second version, 
-        we use let, which is block-scoped. Now, each loop iteration creates a new 
-        binding of i, so each function captures a different value. That's why we get 
-        [0, 1, 2] as expected. This is one of the most practical examples of how scope 
-        and closures work together — and how small changes in how you declare variables 
-        can completely change behavior.`,
+        how variables are scoped. Look at this example:`,
       },
       {
         type: "code",
@@ -771,7 +771,7 @@ console.log(this); // In browser: window object`,
       },
       {
         type: "paragraph",
-        content: `The following code will explain everything about classes if you have the ability to read code:`,
+        content: `The following code will explain everything about classes:`,
       },
       {
         type: "code",
@@ -865,7 +865,9 @@ UtilsAlt.logName(a2); // "Name is: GenericAlt"`,
       },
       {
         type: "paragraph",
-        content: `The typeof operator returns a string describing the type of a value.
+        content: `Another major feature is typeof and instanceof, even if you don't fully understand
+        how they work, you should at least know the difference and why they are used. 
+        The typeof operator returns a string describing the type of a value.
         It works well with primitive types like strings, numbers, booleans, undefined,
         symbols, and bigints. But once you're dealing with complex types like arrays 
         or objects, typeof gets vague — everything that's not a primitive usually returns "object".`,
@@ -920,25 +922,123 @@ import { add } from './math.js';`,
       },
       {
         type: "paragraph",
-        content: `And the last thing I'm going to mention here is the event loop. 
-        JavaScript is single-threaded; it runs everything in one line like a queue,
-        but without blocking when we request it to do something that we don't know 
-        when we will get the answer. So how does it happen?`,
+        content: `And the last thing I'm going to mention here is the event loop.
+  I will talk just a little about this, you can go deeper if you want. 
+  JavaScript is single-threaded; it runs everything in one line like a queue,
+  but without blocking when we request it to do something that we don't know 
+  when we will get the answer. So how does it happen?`,
       },
       {
         type: "paragraph",
         content: `The tasks are separated into three groups: ones that run immediately, microtasks, and macrotasks.
-        Immediate tasks are your regular synchronous code — they run line by line.
-        Microtasks include things like Promises — they run right after the current task finishes.
-        Macrotasks include things like setTimeout or setInterval — they are scheduled to run later in the queue.`,
+  Immediate tasks are your regular synchronous code — they run line by line.
+  Microtasks include things like Promises — they run right after the current task finishes.
+  Macrotasks include things like setTimeout or setInterval — they are scheduled to run later in the queue.`,
       },
       {
         type: "paragraph",
         content: `The event loop keeps checking if the call stack is empty. 
-        Once it is, it looks at the microtask queue and runs all of those first.
-        After the end of each macrotask, it checks the microtask queue again. 
-        After that, it picks one macrotask and runs it. Then the cycle repeats. 
-        This is how JavaScript handles async code without using multiple threads.`,
+  Once it is, it looks at the microtask queue and runs all of those first.
+  After the end of each macrotask, it checks the microtask queue again. 
+  After that, it picks one macrotask and runs it. Then the cycle repeats. 
+  This is how JavaScript handles async code without using multiple threads.`,
+      },
+      {
+        type: "paragraph",
+        content: `Let me show you how this works in practice. When you write code like this, the order might surprise you:`,
+      },
+      {
+        type: "code",
+        language: "javascript",
+        code: `console.log("1 - Start");
+
+setTimeout(() => {
+  console.log("2 - Timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("3 - Promise");
+});
+
+console.log("4 - End");
+
+// Output:
+// 1 - Start
+// 4 - End  
+// 3 - Promise
+// 2 - Timeout`,
+      },
+      {
+        type: "paragraph",
+        content: `Even though setTimeout has 0 delay, it still goes to the macrotask queue. 
+  Because the setTimeout runs in the call stack and creates a macrotask for running later.
+  The Promise runs first because microtasks have priority over macrotasks. 
+  So the execution order is: all synchronous code first, then all microtasks, 
+  then one macrotask, then check microtasks again, and so on.`,
+      },
+      {
+        type: "paragraph",
+        content: `Here's what actually happens step by step: JavaScript puts "Start" and "End" 
+  on the call stack and runs them immediately. The setTimeout callback goes to the 
+  macrotask queue, and the Promise callback goes to the microtask queue. Once the 
+  call stack is empty, the event loop checks the microtask queue first — finds the 
+  Promise callback and runs it. Only after the microtask queue is completely empty 
+  does it pick up the setTimeout callback from the macrotask queue.`,
+      },
+      {
+        type: "paragraph",
+        content: `This priority system exists because microtasks are usually more urgent — 
+  like Promise resolutions that other code might be waiting for. Macrotasks are 
+  more like "background work" that can wait a bit longer. The event loop ensures 
+  that microtasks never get starved by macrotasks, but it also prevents microtasks 
+  from completely blocking macrotasks by processing them in this specific order.`,
+      },
+      {
+        type: "paragraph",
+        content: `A common mistake is thinking that setTimeout(fn, 0) runs immediately. 
+  It doesn't — it goes to the macrotask queue and waits its turn. Same with other 
+  timer functions or DOM events. They all follow this queuing system, which is why 
+  JavaScript can handle user clicks, network requests, and timers all at once without 
+  getting stuck on any single operation.`,
+      },
+      {
+        type: "code",
+        language: "javascript",
+        code: `// Microtask vs Macrotask priority example
+setTimeout(() => console.log("Macrotask 1"), 0);
+
+Promise.resolve().then(() => {
+  console.log("Microtask 1");
+  return Promise.resolve();
+}).then(() => {
+  console.log("Microtask 2");
+});
+
+setTimeout(() => console.log("Macrotask 2"), 0);
+
+console.log("Synchronous");
+
+// Output:
+// Synchronous
+// Microtask 1  
+// Microtask 2
+// Macrotask 1
+// Macrotask 2`,
+      },
+      {
+        type: "paragraph",
+        content: `Notice how both microtasks run before any macrotask, even though the first 
+  setTimeout was scheduled before the Promise. This demonstrates the priority system 
+  clearly — the event loop will drain the entire microtask queue before touching 
+  the macrotask queue.`,
+      },
+      {
+        type: "paragraph",
+        content: `The beauty of this system is that it lets JavaScript appear to do multiple 
+  things at once, even though it's fundamentally single-threaded. Web APIs (like 
+  fetch or DOM events) run outside the main thread, and when they're done, they 
+  just add callbacks to the appropriate queue. The event loop then orchestrates 
+  when those callbacks actually run, keeping everything smooth and responsive.`,
       },
     ],
   },
