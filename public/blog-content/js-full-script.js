@@ -554,19 +554,19 @@ let sym3 = Symbol.for("global"); // Global symbol registry
 let sym4 = Symbol.keyFor(sym3); // Get key from global symbol
 
 // Well-known symbols
-console.log(Symbol.iterator);
-console.log(Symbol.asyncIterator);
-console.log(Symbol.hasInstance);
-console.log(Symbol.isConcatSpreadable);
-console.log(Symbol.match);
-console.log(Symbol.matchAll);
-console.log(Symbol.replace);
-console.log(Symbol.search);
-console.log(Symbol.species);
-console.log(Symbol.split);
-console.log(Symbol.toPrimitive);
-console.log(Symbol.toStringTag);
-console.log(Symbol.unscopables);
+console.log(Symbol.iterator); // Defines the default iterator for an object
+console.log(Symbol.asyncIterator); // Defines the default async iterator for an object
+console.log(Symbol.hasInstance); // Customizes instanceof behavior
+console.log(Symbol.isConcatSpreadable); // Controls if an object spreads in Array.prototype.concat
+console.log(Symbol.match); // Customizes behavior of String.prototype.match
+console.log(Symbol.matchAll); // Customizes behavior of String.prototype.matchAll
+console.log(Symbol.replace); // Customizes behavior of String.prototype.replace
+console.log(Symbol.search); // Customizes behavior of String.prototype.search
+console.log(Symbol.species); // Controls constructor used in derived objects
+console.log(Symbol.split); // Customizes behavior of String.prototype.split
+console.log(Symbol.toPrimitive); // Customizes object-to-primitive conversion
+console.log(Symbol.toStringTag); // Customizes default string tag of an object
+console.log(Symbol.unscopables); // Specifies properties excluded from with scope
 
 // Using symbols as property keys
 let symbolObj = {
@@ -576,15 +576,23 @@ let symbolObj = {
 
 // ==================== 13. ITERATORS & GENERATORS ====================
 // Iterator protocol
-let customIterator = {
+const iterableObj = {
+  values: [10, 20, 30], // 1. An internal array to iterate over
+
   [Symbol.iterator]() {
-    let count = 0;
+    // 2. Define the iterator method (required by for...of)
+    let index = 0; // 3. Initialize iteration state (index)
+
+    const values = this.values; // 4. Reference the values array
+
     return {
+      // 5. Return the iterator object with a next() method
       next() {
-        if (count < 3) {
-          return { value: count++, done: false };
+        if (index < values.length) {
+          // 6. If there are more items
+          return { value: values[index++], done: false }; // Return next value
         }
-        return { done: true };
+        return { done: true }; // 7. Otherwise, signal iteration is done
       },
     };
   },

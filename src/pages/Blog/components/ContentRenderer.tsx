@@ -9,6 +9,8 @@ const ContentRenderer = ({ post }: { post: IBlogPost }) => {
   const [renderedContent, setRenderedContent] = useState<JSX.Element[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  document.title = post.title;
+
   const fontSizeMap: Record<1 | 2 | 3 | 4 | 5 | 6, string> = {
     1: "text-6xl",
     2: "text-5xl",

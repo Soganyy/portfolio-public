@@ -1084,7 +1084,9 @@ just took physical form in this language, and that’s exactly what helped JS ev
         content: `I am leaving a full script that includes everything 
         I know in JavaScript, as well as a smaller script containing just 
         the core concepts for quick review. Both scripts were created by 
-        AI models, but don't worry — I have reviewed them myself.`,
+        AI models, but don't worry — I have reviewed them myself 
+        (they are still in review because first I thought that it will be 
+        easy, I will delete this when I'm done reviewing, half is done).`,
       },
       {
         type: "link",

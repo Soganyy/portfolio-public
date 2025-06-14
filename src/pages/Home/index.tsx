@@ -3,6 +3,7 @@ import { Particles } from "@/components/magicui/particles";
 import Hero from "./Hero";
 import Me from "./Me";
 import { useTheme } from "@/stores/theme-provider";
+import Blog from "./Blog";
 
 export default function Home() {
   const { theme } = useTheme();
@@ -30,6 +31,8 @@ export default function Home() {
 
         <div className="container mx-auto xl:px-40">
           <Me />
+
+          <Blog />
         </div>
       </div>
     </>
