@@ -4,12 +4,20 @@ export const blogPosts: IBlogPost[] = [
   {
     id: 1,
     title: "The JavaScript Core",
-    excerpt:
-      "Core concepts of JS as a language (this is not the latest version and it will be updated)",
+    excerpt: "Core concepts of JS as a language, nature",
     category: "Development",
-    tags: ["javascript", "fundamentals", "beginners", "programming"],
+    tags: [
+      "javascript",
+      "programming",
+      "web-development",
+      "closures",
+      "prototypes",
+      "event-loop",
+      "tutorial",
+      "fundamentals",
+    ],
     date: "2025-06-10",
-    readTime: "8 min",
+    readTime: "27 min",
     content: [
       {
         type: "heading-3",
@@ -1039,6 +1047,74 @@ console.log("Synchronous");
   fetch or DOM events) run outside the main thread, and when they're done, they 
   just add callbacks to the appropriate queue. The event loop then orchestrates 
   when those callbacks actually run, keeping everything smooth and responsive.`,
+      },
+      { type: "separator-space" },
+
+      {
+        type: "heading-3",
+        content: "So...",
+      },
+      {
+        type: "paragraph",
+        content: `I provided the core concepts and tried to explain pretty much everything.
+At the end, I stop and look at what I’ve got and realize that the programming language (JS)
+is just an object-controlled tool (of course, with some flexibility in that definition).
+That’s why it ended up being created in such a short amount of time.
+Now, by just grabbing the main concepts—what holds the language up and keeps it standing—
+I think the person reading this can push further and build a solid understanding of everything in here.
+The concept of creating something that works and developing it on the go
+just took physical form in this language, and that’s exactly what helped JS evolve into what it is today.`,
+      },
+      {
+        type: "paragraph",
+        content: `And here is a list of thigns you got.`,
+      },
+      {
+        type: "list",
+        ordered: false,
+        items: [
+          "Variables",
+          "Data Types",
+          "Hoisting, Shadowing, Scoping",
+          "Objects, Prototyping",
+          "A bit of garbage collection nature",
+          "Functions(another type of objects), Closures",
+          "this",
+          "Classes",
+          "typeof, instanceof",
+          "Modules",
+          "Event Loop",
+        ],
+      },
+      {
+        type: "paragraph",
+        content: `I hope I was able to make a difference and that you enjoyed the blog. Thank you for your time.`,
+      },
+      { type: "separator-space" },
+
+      { type: "separator-line" },
+      {
+        type: "heading-5",
+        content: "The Cheat Sheet",
+      },
+      {
+        type: "paragraph",
+        content: `I am leaving a full script that includes everything 
+        I know in JavaScript, as well as a smaller script containing just 
+        the core concepts for quick review. Both scripts were created by 
+        AI models, but don't worry — I have reviewed them myself.`,
+      },
+      {
+        type: "link",
+        isDownload: true,
+        href: "/blog-content/js-full-script.js",
+        content: "Click to download full script",
+      },
+      {
+        type: "link",
+        isDownload: true,
+        href: "/blog-content/js-core-script.js",
+        content: "Click to download core concepts script",
       },
     ],
   },

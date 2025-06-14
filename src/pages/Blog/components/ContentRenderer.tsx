@@ -78,6 +78,7 @@ const ContentRenderer = ({ post }: { post: IBlogPost }) => {
                   href={block.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  download={block.isDownload}
                   className="text-primary underline"
                 >
                   {block.content}

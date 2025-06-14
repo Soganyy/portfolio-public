@@ -5,7 +5,7 @@ export type TContentBlock =
       content: string;
     }
   | { type: "code"; language: string; code: string }
-  | { type: "link"; href: string; content: string }
+  | { type: "link"; href: string; content: string; isDownload?: boolean }
   | { type: "list"; ordered: boolean; items: string[] }
   | { type: "image"; src: string; alt?: string; caption?: string }
   | { type: "separator-line" | "separator-space" };

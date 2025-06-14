@@ -86,7 +86,7 @@ const BlogPostPage: React.FC = () => {
 
         <ContentRenderer post={post} />
 
-        <footer className="mt-12 pt-8 border-t">
+        <footer className="my-30 pt-8 border-t">
           <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <Badge
