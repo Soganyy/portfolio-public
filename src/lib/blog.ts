@@ -75,7 +75,8 @@ export const blogPosts: IBlogPost[] = [
         content: `I see a programming language as just a tool designed to instruct computers 
         to store and process data exactly the way we want. I try to keep the foundation 
         clear and believe that when we understand the basics lying behind the picture, 
-        we can easily grab anything beyond that.`,
+        we can easily grab anything beyond that. That is why seeing a programming language 
+        as the way I said above matters.`,
       },
       {
         type: "paragraph",
@@ -97,17 +98,19 @@ export const blogPosts: IBlogPost[] = [
       },
       {
         type: "paragraph",
-        content: `Variables are containers used to store data values. 
+        content: `The storage part starts with variables. 
+        Variables are containers used to store data values. 
         When we declare a variable, we create a named reference to a 
         value in memory—basically setting aside a space to keep something. 
         In JavaScript, there are three ways to declare variables: var, let, 
         and const. Each one behaves differently when it comes to scope, hoisting, 
         and reassignment (we will get to these later).
-        var is function-scoped and gets hoisted with an initial value of undefined. 
+        var is function-scoped, meaning that anything than function scopes 
+        will make the variable behave globally declared. 
         The reason for that is simple—back then, there wasn’t really a need for more 
         precise scoping. But as JavaScript grew, the limitations of var led to the 
-        introduction of let and const. In contrast, let and const are block-scoped 
-        and aren’t initialized until the code that defines them actually runs. 
+        introduction of let and const. let and const are block-scoped - they only exist 
+        inside the scope they are declared, and
         const also prevents reassignment, but that doesn’t mean the data it holds 
         is immutable—it just means the reference can’t be changed.`,
       },
@@ -124,9 +127,14 @@ var legacy = "old"; // function-scoped and hoisted with undefined`,
         determined at runtime. This allows a variable to hold different types of 
         values over its lifetime. For example, a variable that starts off as a 
         number can later be reassigned to a string or even an object. While this 
-        offers a lot of flexibility, it also means developers need to be careful 
-        about how types change throughout their code—otherwise, it’s easy to run 
+        offers a lot of flexibility, it also means that you need to be careful 
+        about how types change throughout the code—otherwise, it’s easy to run 
         into unexpected behavior or subtle bugs.`,
+      },
+      {
+        type: "paragraph",
+        content: `Now it is time to discuss the nature of these variables a bit. 
+        The concepts you are going to see are hoisting, scoping, and shadowing`,
       },
       { type: "separator-space" },
 
@@ -311,11 +319,12 @@ console.log("In global scope:", value); // 'outer'
       {
         type: "paragraph",
         content: `JavaScript strings are stored as contiguous sequences of 16-bit code units 
-        using UTF-16 encoding. Simple characters take one unit (2 bytes), while complex characters 
+        using UTF-16 encoding. This means each character is represented by one or two 16-bit units. 
+        Simple characters take one unit (2 bytes), while complex characters 
         like emojis use surrogate pairs (4 bytes total) - this also leads to the miscalculation of length of strings. 
         Internally, engines like V8 store strings in flat buffers or rope structures 
         (for performance it chooses between either a flat array of strings
-        or rope structure where it remembers the location of two values and combine them.). 
+        or rope structure where it remembers the location of two values and combine them). 
         When you create or manipulate strings, 
         you're interacting with read-only memory; changes always create new strings in new memory 
         regions. This model allows efficient sharing, memory safety, and high-speed optimizations, 
@@ -328,7 +337,7 @@ console.log("In global scope:", value); // 'outer'
       },
       {
         type: "paragraph",
-        content: `In JavaScript, null and undefined are both used to represent the absence of a value, 
+        content: `null and undefined are both used to represent the absence of a value, 
         but they serve distinct purposes and behave differently at a semantic and technical level. 
         undefined is the default value assigned to a variable that has been declared but not initialized, 
         or to a function parameter that wasn't provided an argument—it reflects a value that is missing 
@@ -582,8 +591,9 @@ console.log(original.b.c); // still 99 — no change`,
       },
       {
         type: "paragraph",
-        content: `You can think of a function just like you learned in high school 
-        math - we put some input there, it does some calculations,
+        content: `And here we are eventually in the processing part, starting with functions.
+        You can think of a function just like you learned in high school 
+        math - we put input there, it does some calculations,
         and returns some output. Of course, it is more than this explanation, but 
         I think understanding this sentence will make anyone go to a point that is far from here.
         And in JavaScript, functions are first-class citizens, meaning they can be assigned 
@@ -777,7 +787,7 @@ console.log(this); // In browser: window object`,
       },
       {
         type: "paragraph",
-        content: `The following code will explain everything about classes:`,
+        content: `The following code will explain pretty much everything you should know about classes:`,
       },
       {
         type: "code",
@@ -856,7 +866,7 @@ console.log(a.__proto__ === Animal.prototype); // true`,
         type: "paragraph",
         content: `Another major feature is typeof and instanceof, even if you don't fully understand
         how they work, you should at least know the difference and why they are used. 
-        The typeof operator returns a string describing the type of a value.
+        The typeof operator returns a string describing the type of a value with just looking at the internal tag.
         It works well with primitive types like strings, numbers, booleans, undefined,
         symbols, and bigints. But once you're dealing with complex types like arrays 
         or objects, typeof gets vague — everything that's not a primitive usually returns "object".`,
@@ -1037,9 +1047,11 @@ console.log("Synchronous");
       },
       {
         type: "paragraph",
-        content: `That is all I can do, I tried to provide the core concepts and explain pretty much everything.
+        content: `That is all I can do, I tried to provide the core concepts and explain pretty much everything 
+        (explanations relied a bit too much on my perspective and some parts needs need deep research if not understood clearly).
 At the end, I stop and look at what I’ve got and realize that the programming language (JS)
-is just an object-controlled tool (of course, with some flexibility in that definition).
+is just an object-controlled tool (of course, with some flexibility in that definition - 
+there are some other types that are not inside this scope).
 That’s why it ended up being created in such a short amount of time.
 Now, by just grabbing the main concepts—what holds the language up and keeps it standing—
 I think the person reading this can push further and build a solid understanding of everything in here.
