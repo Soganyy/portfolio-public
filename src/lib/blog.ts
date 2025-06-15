@@ -1069,6 +1069,28 @@ just took physical form in this language, and that’s exactly what helped JS ev
       },
       {
         type: "paragraph",
+        content: `Things that are out of this context but should be considered:`,
+      },
+      {
+        type: "list",
+        ordered: false,
+        items: [
+          "Promise",
+          "Map",
+          "Set",
+          "WeakMap",
+          "WeakSet",
+          "FinalizationRegistry",
+          "ArrayBuffer",
+          "TypedArray",
+          "DataView",
+          "Reflect",
+          "Generator",
+          "Proxy",
+        ],
+      },
+      {
+        type: "paragraph",
         content: `I hope I was able to make a difference and that you enjoyed the blog. Thank you for your time.`,
       },
       { type: "separator-space" },
@@ -1084,8 +1106,7 @@ just took physical form in this language, and that’s exactly what helped JS ev
         I know in JavaScript, as well as a smaller script containing just 
         the core concepts for quick review. Both scripts were created by 
         AI models, but don't worry — I have reviewed them myself 
-        (they are still in review because first I thought that it will be 
-        easy, I will delete this when I'm done reviewing, half is done).`,
+        (there are some topics that I don't even know to this time).`,
       },
       {
         type: "link",
