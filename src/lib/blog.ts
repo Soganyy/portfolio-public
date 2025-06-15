@@ -72,11 +72,10 @@ export const blogPosts: IBlogPost[] = [
       },
       {
         type: "paragraph",
-        content: `I see a programming language as a tool designed to instruct computers 
+        content: `I see a programming language as just a tool designed to instruct computers 
         to store and process data exactly the way we want. I try to keep the foundation 
         clear and believe that when we understand the basics lying behind the picture, 
-        we can easily grab anything beyond that, so don't forget about the storage and 
-        processing part. First we should understand storage, then the processing part.`,
+        we can easily grab anything beyond that.`,
       },
       {
         type: "paragraph",
