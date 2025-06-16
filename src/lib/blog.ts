@@ -1118,7 +1118,7 @@ just took physical form in this language, and that’s exactly what helped JS ev
         I know in JavaScript, as well as a smaller script containing just 
         the core concepts for quick review. Both scripts were created by 
         AI models, but don't worry — I have reviewed them myself 
-        (there are some topics that I don't even know to this time).`,
+        (there are some topics that I didn't even know to this time).`,
       },
       {
         type: "link",
